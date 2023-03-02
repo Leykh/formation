@@ -1,18 +1,9 @@
 <?php
 require_once "Connexion.class.php";
 require_once "Formation.class.php";
-require_once "EditeurDao.class.php";
-require_once "AuteurDao.class.php";
 
 class FormationDao extends Connexion {
     private static $_instance = null;
-    private $auteurDao;
-    private $editeurDao;
-    
-    private function __construct() {
-        $this->auteurDao = AuteurDao::getInstance();
-        $this->editeurDao = EditeurDao::getInstance();
-    }
     
     public static function getInstance() {
         if(is_null(self::$_instance)) {

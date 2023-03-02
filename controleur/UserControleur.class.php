@@ -34,7 +34,7 @@ class UserControleur {
         }
     }
     private function sendMailAbonne($login,$mail,$cle){
-        $urlVerification = "http://localhost/formation_php/index.php?action=valider-abonne&login=".$login."&cle=".$cle;
+        $urlVerification = "http://localhost/formation/index.php?action=valider-abonne&login=".$login."&cle=".$cle;
         $sujet = "Création du compte sur le site Alcatar";
         $message = "Pour valider votre compte veuillez cliquer sur le lien suivant ".$urlVerification;
         Outils::sendMail($mail,$sujet,$message);
@@ -134,6 +134,15 @@ class UserControleur {
             }
         }
         else throw new Exception("Vous n'avez pas le droit d'accéder à cette page");
+    }
+    function formulaireModifierUser($login){
+        if(Securite::verifAccessAdmin()){
+            $user = $this->userDao->findUserByLogin($login);
+        require "vue/modifierUtilisateur.view.php";
+        }
+    }
+    function modifierUserValidation($old_login, $login,$mail,$role,$valide,$password,$image){
+        $this->userDao->modifierUser($old_login,$login,$password,$mail,$role,$valide,$image);
     }
 }
 

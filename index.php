@@ -4,7 +4,6 @@ require_once "outil/Outils.class.php";
 require_once "outil/Securite.class.php";
 require_once "controleur/UserControleur.class.php";
 require_once "controleur/InscritControleur.class.php";
-require_once "controleur/AuteurEditeurControleur.class.php";
 
 
 if (Securite::autoriserCookie()){
@@ -17,7 +16,6 @@ if (Securite::autoriserCookie()){
 $formationController = new FormationsController();
 $userControleur = new UserControleur();
 $inscritController = new InscritControleur();   
-$AuteurEditeurConroller = new AuteurEditeurControleur();
 
 try{
     if(empty($_GET['action']) || !isset($_GET['action'])){
@@ -73,6 +71,11 @@ try{
         case "administrer-utilisateur": $userControleur->administrerUtilisateur();
         break;
         case "supprimer-user": $userControleur->supprimerUser($_GET['user']);
+        break;//
+        case "modifier-user": $userControleur->formulaireModifierUser($_GET['user']); // a creer
+        break;
+        case "modifier-user-validation": $userControleur->modifierUserValidation($_POST['login'],$_POST['newlogin'],$_POST['mail'],$_POST['role'],$_POST['valide'],$_POST['password'],$_POST['image']);// a creer
+            $userControleur->administrerUtilisateur();
         break;
         case "mentions-legales": require "vue/mentionLegale.view.php";
         break;

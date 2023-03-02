@@ -21,6 +21,11 @@
             <td><?php echo $user->getPassword(); ?></td>
             <td>
                 <?php if($user->getRole() == "abonne"){ ?>
+                <a href="index.php?action=modifier-user&user=<?= $user->getLogin(); ?>" class="btn btn-warning">modifier</a>
+                <?php } ?>
+            </td>
+            <td>
+                <?php if($user->getRole() == "abonne"){ ?>
                 <a href="index.php?action=supprimer-user&user=<?= $user->getLogin(); ?>" class="btn btn-danger">Supprimer</a>
                 <?php } ?>
             </td>

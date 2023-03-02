@@ -120,4 +120,26 @@ class UsersDao extends Connexion {
         $u=new User($user['login'], $user['password'],$user['mail'], $user['role'],$user['image'], $user['est_valide']);
         return $u;
     }
+    
+    function modifierUser($login,$newlogin,$password,$mail,$role,$est_valide,$image){
+        $pdo = $this->getBdd();
+        $req = "
+        update utilisateur 
+        set login = :newlogin, password = :password, mail = :mail, role = :role, image = :image, est_valide = :est_valide
+        where login = :login";
+        $stmt = $pdo->prepare($req);
+        $stmt->bindValue(":newlogin",$newlogin,PDO::PARAM_STR);
+        $stmt->bindValue(":login",$login,PDO::PARAM_STR);
+        $stmt->bindValue(":password",$password,PDO::PARAM_STR);
+        $stmt->bindValue(":mail",$mail,PDO::PARAM_STR);
+        $stmt->bindValue(":role",$role,PDO::PARAM_STR);
+        $stmt->bindValue(":image",$image,PDO::PARAM_STR);
+        $stmt->bindValue(":est_valide",$est_valide,PDO::PARAM_INT);
+        $resultat = $stmt->execute();
+        $stmt->closeCursor();
+
+        if($resultat > 0){
+            echo "user modifier login=".$login."<br>";
+        }
+    }
 }

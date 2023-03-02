@@ -7,14 +7,10 @@ require_once "model/Inscrit.class.php";
 class FormationsController{
     private $formationDao;
     private $inscritDao;
-    private $auteurDao;
-    private $editeurDao;
 
     public function __construct(){
         $this->formationDao = FormationDao::getInstance();
         $this->inscritDao = InscritDao::getInstance();
-        $this->auteurDao = AuteurDao::getInstance();
-        $this->editeurDao = EditeurDao::getInstance();
     }
     function afficherAccueil(){
         require "vue/accueil.view.php";

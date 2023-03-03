@@ -38,6 +38,8 @@ try{
         break;
         case "afficher-profil": $userControleur->afficherProfil();
         break;
+        case "modifier-image": $userControleur->modifierUserImageValidation();
+        break;
         case "supprimer-abonne": $userControleur->supprimerCompteAbonne();
         break;
         case "logout":  $userControleur->logout();
@@ -60,38 +62,27 @@ try{
         break;
         case "supprimer-formation":  $formationController->supprimerFormation($_GET['id']);
         break;
-        case "modifier-formation": $formationController->modifierFormation($_GET['id']);
+        case "modifier-formation": $formationController->modifierFormationVue($_GET['id']);
         break;
-        case "modifier-formation-validation": $formationController->modifierFormationValidation($_POST['id'],$_POST['nom'],$_POST['descr'],$_POST['cout'],$_POST['image']);
+        case "modifier-formation-validation": $formationController->modifierFormationValidation($_POST['id'],$_POST['nom'],$_POST['cout'],$_POST['descr'],$_POST['image']);
         break;
-        case "creer-formation": $formationController->creerFormation();
+        case "creer-formation": $formationController->creerFormationVue();
         break;
-        case "creer-formation-validation": $formationController->creerValidationFormation($_POST['nom'],$_POST['nb'],$_POST['nbPages'],$_POST['descr']);
+        case "creer-formation-validation": $formationController->creerValidationFormation($_POST['nom'],$_POST['cout'],$_POST['descr']);
         break;
         case "administrer-utilisateur": $userControleur->administrerUtilisateur();
         break;
         case "supprimer-user": $userControleur->supprimerUser($_GET['user']);
-        break;//
-        case "modifier-user": $userControleur->formulaireModifierUser($_GET['user']); // a creer
         break;
-        case "modifier-user-validation": $userControleur->modifierUserValidation($_POST['login'],$_POST['newlogin'],$_POST['mail'],$_POST['role'],$_POST['valide'],$_POST['password'],$_POST['image']);// a creer
-            $userControleur->administrerUtilisateur();
+        case "modifier-user": $userControleur->formulaireModifierUser($_GET['user']);
+        break;
+        case "modifier-user-validation": $userControleur->modifierUserValidation($_POST['login'],$_POST['newlogin'],$_POST['mail'],$_POST['role'],$_POST['valide'],$_POST['password'],$_POST['image']);
         break;
         case "mentions-legales": require "vue/mentionLegale.view.php";
         break;
         case "cookies": require "vue/cookies.view.php";
         break;
         case "donnees-personnelles": require "vue/donneesPersonnelles.view.php";
-        break;
-        case "afficher-auteur": $AuteurEditeurConroller->lireAuteur($_GET['idAuteur']);
-        break;
-        case "gerer-auteur": $AuteurEditeurConroller->gererAllAuteur();
-        break;
-        case "creer-auteur-validation": $AuteurEditeurConroller->creerAuteurValidation();
-        break;
-        case "gerer-editeur": $AuteurEditeurConroller->gererAllEditeur();
-        break;
-        case "creer-editeur-validation": $AuteurEditeurConroller->creerEditeurValidation();
         break;
         case "android": require "vue/android.view.php";
         break;

@@ -48,20 +48,18 @@ class FormationsController{
         }
         else throw new Exception("Vous n'avez pas les droit nécessaires");
     }
-    function creerFormation(){ // Tester les droits
+    function creerFormationVue(){
         if(Securite::verifAccessAdmin()){
-            $auteurList = $this->auteurDao->findAllAuteur();
-            $editeurList = $this->editeurDao->findAllEditeur();
             require "vue/creerformation.view.php";
         }
         else throw new Exception("Vous n'avez pas le droit d'accéder à cette page");
     }
-    function creerValidationFormation($titre,$nb,$nbPage,$description){ // Tester les droits
+    function creerValidationFormation($nom,$cout,$description){
         if(Securite::verifAccessAdmin()){
             $file = $_FILES['image'];
             $repertoire = "public/images/";
             $nomImageAjoute = Outils::ajouterImage($file,$repertoire);
-            $this->formationDao->creerFormation($titre,$nb,$nbPage,$nomImageAjoute,$description);
+            $this->formationDao->creerFormation($nom,$cout,$nomImageAjoute,$description);
             header("Location: index.php?action=administrer-formation");
         }
         else throw new Exception("Vous n'avez pas les droit nécessaires");
@@ -70,14 +68,14 @@ class FormationsController{
         $formations=$this->formationDao->lireFormations();
         require "vue/cardFormations.view.php";
     }
-    function modifierFormation($id){ // Tester les droits
+    function modifierFormationVue($id){ 
         if(Securite::verifAccessAdmin()){
             $formation=$this->formationDao->findOneFormationById($id);
             require "vue/modifierFormation.view.php";
         }
         else throw new Exception("Vous n'avez pas le droit d'accéder à cette page");
     }
-    function modifierFormationValidation($id,$titre,$nb,$nbPage,$description,$image){ // Tester les droits
+    function modifierFormationValidation($id,$nom,$cout,$description,$image){
         if(Securite::verifAccessAdmin()){
             Outils::afficherTableau($_POST,"POST");
             $repertoire = "public/images/";
@@ -90,12 +88,12 @@ class FormationsController{
                 $nomImageAjoute = Outils::ajouterImage($file,$repertoire);
             }
             
-            $formations=$this->formationDao->modifierFormation($id,$titre,$nb,$nbPage,$nomImageAjoute,$description);
+            $formations=$this->formationDao->modifierFormation($id,$nom,$cout,$description,$nomImageAjoute);
             header("Location: index.php?action=administrer-formation");
         }
         else throw new Exception("Vous n'avez pas les droit nécessaires");
     }
-    function ajouerterFormationPanier($id){ // ajout exception 
+    function ajouerterFormationPanier($id){
         $alert="";
         if(!isset($_SESSION['formations'])){
             $_SESSION['formations'] = array();

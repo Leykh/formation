@@ -4,16 +4,12 @@ ob_start();
 <div class="container">
     <form method="POST" action="index.php?page=formations&action=modifier-formation-validation" enctype="multipart/form-data">
       <div class="mb-3">
-        <label class="form-label" for="titre">Titre : </label>
-        <input class="form-control" type="text" id="titre" name="titre" value="<?= $formation->getNom() ?>">
+        <label class="form-label" for="nom">Nom : </label>
+        <input class="form-control" type="text" id="nom" name="nom" value="<?= $formation->getNom() ?>">
       </div>
       <div class="mb-3">
-        <label class="form-label" for="nb">Nombre d'exemplaires : </label>
-        <input class="form-control" type="number" id="nb" name="nb" value="<?= $formation->getNb() ?>">
-      </div>
-      <div class="mb-3">
-        <label class="form-label" for="nbPages">Nombre de pages : </label>
-        <input class="form-control" type="number" id="nbPages" name="nbPages" value="<?= $formation->getNbPages() ?>">
+        <label class="form-label" for="cout">Cout : </label>
+        <input class="form-control" type="number" id="cout" name="cout" value="<?= $formation->getCout() ?>">
       </div>
       <div class="mb-3">
         <label class="form-label" for="descr">Description : </label>

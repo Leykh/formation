@@ -142,7 +142,36 @@ class UserControleur {
         }
     }
     function modifierUserValidation($old_login, $login,$mail,$role,$valide,$password,$image){
-        $this->userDao->modifierUser($old_login,$login,$password,$mail,$role,$valide,$image);
+        if(Securite::verifAccessAdmin()){
+            Outils::afficherTableau($_POST,"POST");
+            $repertoire = "public/images/";
+            $nomImageAjoute = $image;
+            $file = $_FILES['image'];
+            Outils::afficherTableau($file,"file");
+            $repertoire = "public/images/";
+            if($_FILES['image']['size'] > 0){
+                unlink($repertoire.$nomImageAjoute);
+                $nomImageAjoute = Outils::ajouterImage($file,$repertoire);
+            }
+        $this->userDao->modifierUser($old_login,$login,$password,$mail,$role,$valide,$nomImageAjoute);
+        header("Location: index.php?action=administrer-utilisateur");
+    }
+    else throw new Exception("Vous n'avez pas les droit nécessaires");
+    }
+    function modifierUserImageValidation(){
+        $login = $_SESSION['login'];
+        $user = $this->userDao->findUserByLogin($login);
+        $nomImageAjoute = $user->getImage();
+        Outils::afficherTableau($_POST,"POST");
+            $repertoire = "public/images/";
+            $file = $_FILES['image'];
+            Outils::afficherTableau($file,"file");
+            $repertoire = "public/images/";
+            if($_FILES['image']['size'] > 0){
+                unlink($repertoire.$nomImageAjoute);
+                $nomImageAjoute = Outils::ajouterImage($file,$repertoire);
+            }
+        $this->userDao->modifierUserImage($login,$nomImageAjoute);
     }
 }
 

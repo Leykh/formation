@@ -142,4 +142,21 @@ class UsersDao extends Connexion {
             echo "user modifier login=".$login."<br>";
         }
     }
+    
+    function modifierUserImage($login,$image){
+        $pdo = $this->getBdd();
+        $req = "
+        update utilisateur 
+        set image = :image
+        where login = :login";
+        $stmt = $pdo->prepare($req);
+        $stmt->bindValue(":login",$login,PDO::PARAM_STR);
+        $stmt->bindValue(":image",$image,PDO::PARAM_STR);
+        $resultat = $stmt->execute();
+        $stmt->closeCursor();
+
+        if($resultat > 0){
+            echo "user modifier login=".$login."<br>";
+        }
+    }
 }

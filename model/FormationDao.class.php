@@ -36,13 +36,14 @@ class FormationDao extends Connexion {
         return $l;
     }
     function creerFormation($nom,$cout,$image,$description){
+        echo "formation cout :"; echo $cout;
         $pdo = $this->getBdd();
         $req = "
         INSERT INTO formations (nom, cout, image, description)
         values (:nom, :cout, :image, :description)";
         $stmt = $pdo->prepare($req);
         $stmt->bindValue(":nom",$nom,PDO::PARAM_STR);
-        $stmt->bindValue(":cout",$cout,PDO::PARAM_DOUBLE);
+        $stmt->bindValue(":cout",$cout,PDO::PARAM_STR);
         $stmt->bindValue(":image",$image,PDO::PARAM_STR);
         $stmt->bindValue(":description",$description,PDO::PARAM_STR);
         $resultat = $stmt->execute();
@@ -70,7 +71,7 @@ class FormationDao extends Connexion {
         $nbr = $stmt->execute();
         return $nbr;
     }
-    function modifierFormation($id,$nom,$cout,$image,$description){
+    function modifierFormation($id,$nom,$cout,$description,$image){
         $pdo = $this->getBdd();
         $req = "
         update formations 
@@ -79,7 +80,7 @@ class FormationDao extends Connexion {
         $stmt = $pdo->prepare($req);
         $stmt->bindValue(":id",$id,PDO::PARAM_INT);
         $stmt->bindValue(":nom",$nom,PDO::PARAM_STR);
-        $stmt->bindValue(":cout",$cout,PDO::PARAM_DOUBLE);
+        $stmt->bindValue(":cout",$cout,PDO::PARAM_STR);
         $stmt->bindValue(":image",$image,PDO::PARAM_STR);
         $stmt->bindValue(":description",$description,PDO::PARAM_STR);
         $resultat = $stmt->execute();

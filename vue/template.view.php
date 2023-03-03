@@ -35,7 +35,7 @@
                             <a class="nav-link" href="index.php?action=afficher-panier">Panier</a> 
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="index.php?action=lister-inscrit-formation">Formations</a>
+                            <a class="nav-link" href="index.php?action=lister-inscrit-formation">Mes formations</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="index.php?action=afficher-profil">Profil</a>
@@ -56,13 +56,10 @@
                     <?php } ?>
                     <?php if(Securite::verifAccessAdmin()){ ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php?action=administrer-formation">Aministration formation</a>
+                        <a class="nav-link" href="index.php?action=administrer-formation">Administration formation</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php?action=creer-formation">Créer formation</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.php?action=administrer-utilisateur">administrer utilisateur</a>
+                        <a class="nav-link" href="index.php?action=administrer-utilisateur">Administrer utilisateur</a>
                     </li>
                     <?php } ?>
                 </ul>

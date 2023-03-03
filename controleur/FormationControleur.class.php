@@ -109,10 +109,9 @@ class FormationsController{
         header("Location: index.php?action=afficher-catalogue");
     }
     function supprimerFormationPanier($id){
-        for ($i = 0; $i < count($_SESSION['formations']); $i++){
-            if($_SESSION['formations'][$i] == $id){
-                unset($_SESSION['formations'][$i]);
-            } 
+        $del = array_search($id,$_SESSION['formations']);
+        if(isset($del)){
+            unset($_SESSION['formations'][$del]);
         }
         header("Location: index.php?action=afficher-panier");
     }

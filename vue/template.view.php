@@ -28,12 +28,9 @@
                         <a class="nav-link active" href="index.php">Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php?action=afficher-catalogue">Catalogue</a> <?php ?>
+                        <a class="nav-link" href="index.php?action=afficher-catalogue">Catalogue des formations</a> <?php ?>
                     </li>
                     <?php if(Securite::isConnected()){ ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.php?action=afficher-panier">Panier</a> 
-                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="index.php?action=lister-inscrit-formation">Mes formations</a>
                         </li>

@@ -3,14 +3,17 @@ require_once "model/FormationDao.class.php";
 require_once "./outil/Outils.class.php";
 require_once "model/InscritDao.class.php"; 
 require_once "model/Inscrit.class.php"; 
+require_once "model/RessourceDao.class.php"; 
 
 class FormationsController{
     private $formationDao;
     private $inscritDao;
+    private $ressourceDao;
 
     public function __construct(){
         $this->formationDao = FormationDao::getInstance();
         $this->inscritDao = InscritDao::getInstance();
+        $this->ressourceDao = RessourceDao::getInstance();
     }
     function afficherAccueil(){
         require "vue/accueil.view.php";
@@ -22,6 +25,8 @@ class FormationsController{
     }
     function afficherFormation($id){
         $formation=$this->formationDao->findOneFormationById($id);
+        $ressources=$this->ressourceDao->findAllRessourceById($id);
+        $inscrit=$this->inscritDao->verifInscritFormation($_SESSION['login'],$id);
         require "vue/afficherformation.view.php";
     }
     function afficherPanierInscrit(){
@@ -38,7 +43,7 @@ class FormationsController{
     }
     function supprimerFormation($id){ 
         if(Securite::verifAccessAdmin()){           
-            if(!$this->inscritDao->isExistInscritByidFormation($id)){
+            if(!$this->inscritDao->existInscritByidFormation($id)){
                 $nomImage = $this->formationDao->findOneFormationById($id)->getImage();
                 $this->formationDao->supprimerFormation($id);
                 unlink("public/images/".$nomImage);

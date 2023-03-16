@@ -94,7 +94,7 @@ class UserControleur {
     }
     function supprimerCompteAbonne(){
         if($_SESSION['role'] == 'abonne'){
-            if(!$this->inscritDao->isExistInscritByLogin($_SESSION['login'])){
+            if(!$this->inscritDao->existInscritByLogin($_SESSION['login'])){
                 $user = $this->userDao->supprimerUser($_SESSION['login']);
                 session_unset(); 
                 echo "session_unset() ";
@@ -125,7 +125,7 @@ class UserControleur {
     }
     function supprimerUser($login){
         if(Securite::verifAccessAdmin()){
-            if(!$this->inscritDao->isExistInscritByLogin($login)){
+            if(!$this->inscritDao->existInscritByLogin($login)){
                 $this->userDao->supprimerUser($login);
                 header("Location: index.php?action=administrer-utilisateur");
             }

@@ -10,7 +10,6 @@
   <div class="row">
     <?php $i=0; ?>
     <?php foreach($formations as $formation) { ?>
-      <?php $i++; ?>
       <div class="col">
         <div class="card p-2 m-2" style="width: 20rem;">
           <img height="300px" src="public/images/<?php echo $formation->getImage(); ?>" class="card-img-top" alt="image">

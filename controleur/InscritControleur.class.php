@@ -12,6 +12,9 @@ class InscritControleur {
         $this->inscritDao = InscritDao::getInstance();
         $this->formationDao = FormationDao::getInstance();
     }
+    public function verifierInscrit($login,$idFormation){
+        return ($this->inscritDao->verifInscritFormation($login,$idFormation) > 0);
+    }
     public function validerPanierInscrit(){
         echo date('Y-m-d H:i:s');
         if(isset($_SESSION['formations'])){
@@ -31,7 +34,6 @@ class InscritControleur {
     public function listerInscritFormation(){
         $alert="";
         $inscritList = $this->inscritDao->findAllInscritByLogin($_SESSION['login']);
-        //afficherTableau($inscritList, "inscritList");
         if(isset($inscritList) && !empty($inscritList)){
             require "vue/listerInscritFormation.view.php";
         }
@@ -41,13 +43,11 @@ class InscritControleur {
         }
     }
     public function retournerFormationInscrit($idInscrit, $idFormation){
-        //echo "retourFormationInscrit idInscrit = ".$idInscrit."<br>";
         $this->inscritDao->setDateFin($idInscrit);
         $this->formationDao->incrementerNbFormation($idFormation);
         header("Location: index.php?action=lister-inscrit-formation");
     }
     public function afficherHistoriqueInscrit(){
-        //echo "retourFormationInscrit idInscrit = ".$idInscrit."<br>";
         $alert="";
         $inscritHistoriqueList = $this->inscritDao->findAllInscritHistoriqueByLogin($_SESSION['login']);
         if(!isset($inscritHistoriqueList) || empty($inscritHistoriqueList)){

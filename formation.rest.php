@@ -6,7 +6,7 @@ $formationDao = FormationDao::getInstance();
 if(isset($_GET["operation"])){
     if($_GET["operation"]=="lister"){
         try{
-            $formations=$formationDao->findAllFormation();
+            $formations=$formationDao-> findAllFormation();
             print("lister#");
             print(json_encode($formations));
             echo(json_encode($formations));

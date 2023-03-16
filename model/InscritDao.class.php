@@ -22,7 +22,7 @@ class InscritDao extends Connexion {
                 $inscrit = new Inscrit($inscritListBd['idFormation'], $inscritListBd['login'], $inscritListBd['dateDebut'], $inscritListBd['dateFin'], $inscritListBd['description']);
                 $inscrits[]=$inscrit;
             }
-            return $formations;
+            return $inscrits;
         }
     }
     public function findAllInscritByLogin($login){
@@ -113,7 +113,7 @@ class InscritDao extends Connexion {
         $stmt->closeCursor();
         return ($nb > 0);
     }
-    public function isExistInscritByidFormation($idFormation){
+    public function existInscritByidFormation($idFormation){
         $stmt = $this->getBdd()->prepare(
             "SELECT count(idFormation) AS nb FROM formationinscrits WHERE idFormation = :idFormation");
         $stmt->bindValue(":idFormation",$idFormation,PDO::PARAM_INT);
@@ -122,7 +122,7 @@ class InscritDao extends Connexion {
         $stmt->closeCursor(); 
         return ($nbFormationInscrit['nb'] > 0);
     }
-    public function isExistInscritByLogin($login){
+    public function existInscritByLogin($login){
         $stmt = $this->getBdd()->prepare(
             "SELECT count(idInscrit) AS nb FROM formationinscrits WHERE login = :login");
         $stmt->bindValue(":login",$login,PDO::PARAM_STR);
@@ -130,6 +130,16 @@ class InscritDao extends Connexion {
         $nbInscrit = $stmt->fetch(PDO::FETCH_ASSOC);
         $stmt->closeCursor(); 
         return ($nbInscrit['nb'] > 0);
+    }
+    public function verifInscritFormation($login, $idFormation){
+        $stmt = $this->getBdd()->prepare(
+            "SELECT count(idFormation) AS nb FROM formationinscrits WHERE idFormation = :idFormation AND login LIKE :login");
+        $stmt->bindValue(":idFormation",$idFormation,PDO::PARAM_INT);
+        $stmt->bindValue(":login",$login,PDO::PARAM_STR);
+        $stmt->execute();
+        $nbFormationInscrit = $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt->closeCursor(); 
+        return ($nbFormationInscrit['nb'] > 0);       
     }
 }
 

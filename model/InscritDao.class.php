@@ -133,7 +133,7 @@ class InscritDao extends Connexion {
     }
     public function verifInscritFormation($login, $idFormation){
         $stmt = $this->getBdd()->prepare(
-            "SELECT count(idFormation) AS nb FROM formationinscrits WHERE idFormation = :idFormation AND login LIKE :login");
+            "SELECT count(idFormation) AS nb FROM formationinscrits WHERE idFormation = :idFormation AND login LIKE :login AND dateFin IS NULL");
         $stmt->bindValue(":idFormation",$idFormation,PDO::PARAM_INT);
         $stmt->bindValue(":login",$login,PDO::PARAM_STR);
         $stmt->execute();

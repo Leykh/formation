@@ -8,7 +8,6 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <th scope="col">Id Inscription</th>
           <th scope="col">Titre</th>
           <th scope="col">Date Debut</th>
         </tr>
@@ -16,7 +15,6 @@
       <tbody>
         <?php foreach($inscritList as $inscrit) { ?>
           <tr class="align-middle">
-            <td scope="row"><?php echo $inscrit->getIdInscrit(); ?></td>
             <td><?php echo $inscrit->getNomFormation(); ?></td>
             <td><?php echo  $inscrit->getDateDebut(); ?></td> 
             <td><a href="index.php?action=afficher-formation&id=<?= $inscrit->getidFormation(); ?>" class="btn btn-info">Suivre</a></td>

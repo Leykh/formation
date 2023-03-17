@@ -162,16 +162,15 @@ class UserControleur {
         $login = $_SESSION['login'];
         $user = $this->userDao->findUserByLogin($login);
         $nomImageAjoute = $user->getImage();
-        Outils::afficherTableau($_POST,"POST");
             $repertoire = "public/images/";
             $file = $_FILES['image'];
-            Outils::afficherTableau($file,"file");
             $repertoire = "public/images/";
             if($_FILES['image']['size'] > 0){
                 unlink($repertoire.$nomImageAjoute);
                 $nomImageAjoute = Outils::ajouterImage($file,$repertoire);
             }
         $this->userDao->modifierUserImage($login,$nomImageAjoute);
+        header("Location: index.php?action=afficher-profil");
     }
 }
 

@@ -20,7 +20,7 @@ class FormationDao extends Connexion {
         $bddFormations = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $stmt->closeCursor();
         foreach($bddFormations as $formation){
-            $l=new Formation($formation['id'], $formation['nom'], $formation['description'], $formation['cout'], $formation['image']);
+            $l=new Formation($formation['id'], $formation['nom'], $formation['description'], $formation['cout'], $formation['image'],$formation['createur']);
             $formations[]=$l;
         }
         return $formations;
@@ -31,21 +31,21 @@ class FormationDao extends Connexion {
         $cpt = $stmt->execute();
         $formation = $stmt->fetch(PDO::FETCH_ASSOC);
         $stmt->closeCursor();
-        $l=new Formation($formation['id'], $formation['nom'], $formation['description'], $formation['cout'], $formation['image']);
+        $l=new Formation($formation['id'], $formation['nom'], $formation['description'], $formation['cout'], $formation['image'],$formation['createur']);
         
         return $l;
     }
-    function creerFormation($nom,$cout,$image,$description){
-        echo "formation cout :"; echo $cout;
+    function creerFormation($nom,$cout,$image,$description,$createur){
         $pdo = $this->getBdd();
         $req = "
-        INSERT INTO formations (nom, cout, image, description)
-        values (:nom, :cout, :image, :description)";
+        INSERT INTO formations (nom, cout, image, description,createur)
+        values (:nom, :cout, :image, :description,:createur)";
         $stmt = $pdo->prepare($req);
         $stmt->bindValue(":nom",$nom,PDO::PARAM_STR);
         $stmt->bindValue(":cout",$cout,PDO::PARAM_STR);
         $stmt->bindValue(":image",$image,PDO::PARAM_STR);
         $stmt->bindValue(":description",$description,PDO::PARAM_STR);
+        $stmt->bindValue(":createur",$createur,PDO::PARAM_STR);
         $resultat = $stmt->execute();
         $stmt->closeCursor();
         if($resultat > 0){
@@ -127,16 +127,16 @@ class FormationDao extends Connexion {
         $stmt->closeCursor();  
         return $imageBd['titre'];
     }
-    public function findAllFormationByIdAuteur($idAuteur){
+    public function findAllFormationByIdCreateur($createur){
         $stmt = $this->getBdd()->prepare(
-            "SELECT * FROM formations WHERE idAuteur = :idAuteur");
-        $stmt->bindValue(":idAuteur",$idAuteur,PDO::PARAM_INT);
+            "SELECT * FROM formations WHERE createur = :createur");
+        $stmt->bindValue(":createur",$createur,PDO::PARAM_INT);
         $nb = $stmt->execute();
         $FormationListBd = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $stmt->closeCursor();
         if(isset($FormationListBd) && !empty($FormationListBd)){
             foreach($FormationListBd as $formationBd){
-                $formation = new Formation($formationBd['id'], $formationBd['nom'], $formationBd['description'], $formationBd['cout'], $formationBd['image']);
+                $formation = new Formation($formationBd['id'], $formationBd['nom'], $formationBd['description'], $formationBd['cout'], $formationBd['image'],$formationBd['createur']);
                 $this->formations[]=$formation;
             }
             return $this->formations;

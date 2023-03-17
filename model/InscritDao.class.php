@@ -31,7 +31,7 @@ class InscritDao extends Connexion {
                 . " FROM formationinscrits "
                 . " JOIN formations ON formationinscrits.idFormation = formations.id "
                 . "WHERE login= :login AND dateFin IS NULL ORDER BY dateFin ASC");
-        $stmt->bindValue(":login",$login,PDO::PARAM_INT);
+        $stmt->bindValue(":login",$login,PDO::PARAM_STR);
         $nb = $stmt->execute();
         $inscritListBd = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $stmt->closeCursor();

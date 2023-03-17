@@ -41,7 +41,7 @@
                             <a class="nav-link" href="index.php?action=afficher-historique-inscrit">Historique</a>
                         </li>
                     <?php } ?>    
-                    <?php if(!Securite::isConnected()){ // si non connecté ?>
+                    <?php if(!Securite::isConnected()){?>
                         <?php if(Securite::autoriserCookie()){ ?>
                             <li class="nav-item">
                                 <a class="nav-link" href="index.php?action=creer-abonne">Créer compte</a>
@@ -51,9 +51,14 @@
                         <a class="nav-link" href="index.php?action=android">application android</a>
                     </li>
                     <?php } ?>
+                    <?php if(Securite::verifAccessCfa()){ ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php?action=administrer-formation">Gérer les formations</a>
+                    </li>
+                    <?php } ?>
                     <?php if(Securite::verifAccessAdmin()){ ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php?action=administrer-formation">Administration formation</a>
+                        <a class="nav-link" href="index.php?action=administrer-formation">Administrer formations</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="index.php?action=administrer-utilisateur">Administrer utilisateur</a>

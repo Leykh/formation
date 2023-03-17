@@ -6,7 +6,7 @@ class Securite {
     public static function verifAccessAbonne(){
         return (isset($_SESSION['role']) && !empty($_SESSION['role']) && $_SESSION['role'] === "abonne");
     }
-    public static function verifAccessCentreFormation(){
+    public static function verifAccessCfa(){
         return (isset($_SESSION['role']) && !empty($_SESSION['role']) && $_SESSION['role'] === "CFA");
     }
     public static function isConnected(){

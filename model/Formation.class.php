@@ -5,13 +5,15 @@ class Formation implements JsonSerializable {
     private $cout;
     private $image;
     private $description;
+    private $createur;
 
-    function __construct($id, $nom, $description, $cout, $image) {
+    function __construct($id, $nom, $description, $cout, $image,$createur) {
         $this->id = $id;
         $this->nom = $nom;
         $this->description = $description;
         $this->cout = $cout;
         $this->image = $image;
+        $this->createur = $createur;
     }
     public function __toString() {
         return "id=".$this->id." nom=".$this->nom." description=".$this->description." cout=".$this->cout." image=".$this->image;
@@ -40,4 +42,8 @@ class Formation implements JsonSerializable {
 
     public function getCout(){return $this->cout;}
     public function setCout($cout){$this->cout = $cout;}
+
+    
+    public function getCreateur(){return $this->createur;}
+    public function setCreateur($createur){$this->createur = $createur;}
 }

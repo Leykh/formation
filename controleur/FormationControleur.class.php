@@ -21,6 +21,12 @@ class FormationsController{
     function afficherCatalogue(){
         $alert = "";
         $formations=$this->formationDao->findAllFormation();
+        foreach($formations as $formation){
+            $del = array_search($formation,$formations);
+            if($this->inscritDao->verifInscritFormation($_SESSION['login'],$formation->getId())){
+                unset($formations[$del]);
+            }
+        }
         require "vue/afficherCatalogue.view.php";
     }
     function afficherFormation($id){
@@ -64,7 +70,7 @@ class FormationsController{
             $file = $_FILES['image'];
             $repertoire = "public/images/";
             $nomImageAjoute = Outils::ajouterImage($file,$repertoire);
-            $this->formationDao->creerFormation($nom,$cout,$nomImageAjoute,$description);
+            $this->formationDao->creerFormation($nom,$cout,$nomImageAjoute,$description,$_SESSION['login']);
             header("Location: index.php?action=administrer-formation");
         }
         else throw new Exception("Vous n'avez pas les droit nécessaires");
@@ -122,6 +128,7 @@ class FormationsController{
     }
     function administrerFormations(){
         $tabFormations=$this->formationDao->findAllFormation();
+        $login = $_SESSION['login'];
         require "vue/administrerFormations.view.php";
     }
 }

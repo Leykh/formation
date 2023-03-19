@@ -21,7 +21,7 @@ class RessourceDao extends Connexion {
         $stmt->closeCursor();
         if(isset($moduleListBd)){
             foreach($moduleListBd as $ressourceBd){
-                $ressource = new Ressource($ressourceBd['idmodules'], $ressourceBd['idformation'], $ressourceBd['ressource']);
+                $ressource = new Ressource($ressourceBd['idmodules'], $ressourceBd['idformation'], $ressourceBd['description'], $ressourceBd['ressource']);
                 $ressources[]=$ressource;
             }
             return $ressources;

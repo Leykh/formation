@@ -1,6 +1,6 @@
 <?php
 
-class Inscrit {
+class Inscrit implements JsonSerializable{
     private $idInscrit;
     private $idFormation;
     private $login;
@@ -14,6 +14,11 @@ class Inscrit {
     }
     public function __toString() {
         return $this->idInscrit." ".$this->idFormation." ".$this->login." ".$this->dateDebut." ".$this->titreFormation." ".$this->dateFin." "."<br>";
+    }
+    public function jsonSerialize() {
+        return [
+            'idFormation' => $this->idFormation
+        ];
     }
     function getNomFormation() {
         return $this->titreFormation;
@@ -63,4 +68,4 @@ class Inscrit {
         $this->dateFin = $dateFin;
     }
 }
-
+?>

@@ -21,7 +21,7 @@ class UsersDao extends Connexion {
         $cpt = $stmt->execute();
         $passwd = $stmt->fetch(PDO::FETCH_ASSOC);
         $stmt->closeCursor();  
-        return $passwd['password'];
+        return isset($passwd['password']) ? $passwd['password'] : ("");
     }    
     function findAllUser(){
         $stmt = $this->getBdd()->prepare("SELECT * FROM utilisateur");
@@ -30,9 +30,9 @@ class UsersDao extends Connexion {
         $stmt->closeCursor();
         foreach($bddUsers as $user){
             $u=new User($user['login'], $user['password'],$user['mail'], $user['role'],$user['image'], $user['est_valide']);
-            $this->users[]=$u;
+            $users[]=$u;
         }
-        return $this->users;
+        return $users;
     }
     function supprimerUser($username){
         $pdo = $this->getBdd();
@@ -160,3 +160,4 @@ class UsersDao extends Connexion {
         }
     }
 }
+?>

@@ -1,6 +1,7 @@
 <?php
 require_once "Connexion.class.php";
 require_once "Formation.class.php";
+require_once "Inscrit.class.php";
 class InscritDao extends Connexion {
     private static $_instance = null;
     
@@ -19,7 +20,10 @@ class InscritDao extends Connexion {
         $stmt->closeCursor();
         if(isset($inscritListBd)){
             foreach($inscritListBd as $inscritBd){
-                $inscrit = new Inscrit($inscritListBd['idFormation'], $inscritListBd['login'], $inscritListBd['dateDebut'], $inscritListBd['dateFin'], $inscritListBd['description']);
+                $inscrit = new Inscrit($inscritBd['idFormation'], $inscritBd['login']);
+                $inscrit->setIdInscrit($inscritBd['idInscrit']);
+                $inscrit->setDateDebut($inscritBd['dateDebut']);
+                $inscrit->setDateFin($inscritBd['dateFin']);
                 $inscrits[]=$inscrit;
             }
             return $inscrits;
@@ -142,4 +146,4 @@ class InscritDao extends Connexion {
         return ($nbFormationInscrit['nb'] > 0);       
     }
 }
-
+?>

@@ -42,3 +42,4 @@ class RessourceDao extends Connexion {
         }
     }
 }
+?>

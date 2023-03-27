@@ -11,9 +11,6 @@ class FormationDao extends Connexion {
         }
         return self::$_instance;
     }
-    public function getFormations(){
-        return $this->formations;
-    }
     function findAllFormation(){
         $stmt = $this->getBdd()->prepare("SELECT * FROM formations");
         $stmt->execute();
@@ -137,12 +134,13 @@ class FormationDao extends Connexion {
         if(isset($FormationListBd) && !empty($FormationListBd)){
             foreach($FormationListBd as $formationBd){
                 $formation = new Formation($formationBd['id'], $formationBd['nom'], $formationBd['description'], $formationBd['cout'], $formationBd['image'],$formationBd['createur']);
-                $this->formations[]=$formation;
+                $formations[]=$formation;
             }
-            return $this->formations;
+            return $formations;
         }
         else {
             return null;
         }
     }
 }
+?>

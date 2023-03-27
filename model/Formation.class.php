@@ -47,3 +47,4 @@ class Formation implements JsonSerializable {
     public function getCreateur(){return $this->createur;}
     public function setCreateur($createur){$this->createur = $createur;}
 }
+?>

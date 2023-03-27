@@ -16,6 +16,11 @@ class User {
         $this->image = $image;
         $this->estValide = $estValide;
     }
+    public function jsonSerialize() {
+        return [
+            'login' => $this->login
+        ];
+    }
     public function __toString() {
         return $this->login." ".$this->password." ".$this->mail." ".$this->role." ". $this->estValide;
     }
@@ -56,3 +61,4 @@ class User {
         $this->estValide = $estValide;
     }
 }
+?>

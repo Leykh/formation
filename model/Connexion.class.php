@@ -17,3 +17,4 @@ abstract class Connexion {
         return self::$pdo;
     }
 }
+?>

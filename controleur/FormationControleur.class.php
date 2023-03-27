@@ -23,7 +23,7 @@ class FormationsController{
         $formations=$this->formationDao->findAllFormation();
         foreach($formations as $formation){
             $del = array_search($formation,$formations);
-            if($this->inscritDao->verifInscritFormation($_SESSION['login'],$formation->getId())){
+            if(isset($_SESSION['login']) && $this->inscritDao->verifInscritFormation($_SESSION['login'],$formation->getId())){
                 unset($formations[$del]);
             }
         }

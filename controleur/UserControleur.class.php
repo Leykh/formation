@@ -173,4 +173,5 @@ class UserControleur {
         header("Location: index.php?action=afficher-profil");
     }
 }
+?>
 

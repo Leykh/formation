@@ -7,6 +7,11 @@
         <?= $alert ?>
     </div>              
 <?php } else { ?>
+  <?php if(Securite::isConnected()){ ?>
+      <div class="" style="padding: 20; text-align : right;">
+        <a href="index.php?action=afficher-panier" class="btn btn-primary btn-lg">Payer les formations</a>
+    </div>
+  <?php } ?>
   <div class="row">
     <?php $i=0; ?>
     <?php foreach($formations as $formation) { ?>
@@ -32,11 +37,6 @@
         <div class="col-3"></div>          
     <?php } ?>  
   </div>
-  <?php if(Securite::isConnected()){ ?>
-      <div class="col text-center" style="padding: 20;">
-        <a href="index.php?action=afficher-panier" class="btn btn-primary btn-lg">Payer les formations</a>
-    </div>
-  <?php } ?>
 <?php } ?> 
 <?php
 $content = ob_get_clean();

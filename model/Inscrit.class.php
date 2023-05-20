@@ -20,52 +20,23 @@ class Inscrit implements JsonSerializable{
             'idFormation' => $this->idFormation
         ];
     }
-    function getNomFormation() {
-        return $this->titreFormation;
-    }
+    
+    function getIdInscrit() { return $this->idInscrit; }
+    public function setIdInscrit($idInscrit): void { $this->idInscrit = $idInscrit; }
 
-    public function setNomFormation($titreFormation): void {
-        $this->titreFormation = $titreFormation;
-    }
+    function getNomFormation() { return $this->titreFormation; }
+    public function setNomFormation($titreFormation): void { $this->titreFormation = $titreFormation; }
 
-    function getIdInscrit() {
-        return $this->idInscrit;
-    }
+    function getidFormation() { return $this->idFormation; }
+    function setIdFormation($idFormation): void { $this->idFormation = $idFormation; }
 
-    function setIdInscrit($idInscrit): void {
-        $this->idInscrit = $idInscrit;
-    }
+    function getLogin() { return $this->login; }
+    function setLogin($login): void { $this->login = $login; }
 
-    function getidFormation() {
-        return $this->idFormation;
-    }
+    function getDateDebut() { return $this->dateDebut; }
+    function setDateDebut($dateDebut): void { $this->dateDebut = $dateDebut; }
 
-    function getLogin() {
-        return $this->login;
-    }
-
-    function getDateDebut() {
-        return $this->dateDebut;
-    }
-
-    function getDateFin() {
-        return $this->dateFin;
-    }
-
-    function setIdFormation($idFormation): void {
-        $this->idFormation = $idFormation;
-    }
-
-    function setLogin($login): void {
-        $this->login = $login;
-    }
-
-    function setDateDebut($dateDebut): void {
-        $this->dateDebut = $dateDebut;
-    }
-
-    function setDateFin($dateFin): void {
-        $this->dateFin = $dateFin;
-    }
+    function getDateFin() { return $this->dateFin; }
+    function setDateFin($dateFin): void { $this->dateFin = $dateFin; }
 }
 ?>

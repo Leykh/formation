@@ -46,7 +46,7 @@ try{
         break;
         case "afficher-panier":  $formationController->afficherPanierInscrit();
         break;
-        case "ajouter-formation-panier":  $formationController->ajouerterFormationPanier($_GET['id']);
+        case "ajouter-formation-panier":  $formationController->ajouterFormationPanier($_GET['id']);
         break;
         case "supprimer-formation-panier":  $formationController->supprimerFormationPanier($_GET['id']);
         break; 

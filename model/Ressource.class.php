@@ -12,33 +12,17 @@ class Ressource implements JsonSerializable {
         $this->description= $description;
     }
 
-    public function setIdRessource($idRessource): void {
-        $this->idRessource = $idRessource;
-    }
-    function getIdRessource() {
-        return $this->idRessource;
-    }
+    public function setIdRessource($idRessource): void { $this->idRessource = $idRessource; }
+    function getIdRessource() { return $this->idRessource; }
 
-    public function setIdFormation($idFormation): void {
-        $this->idFormation = $idFormation;
-    }
-    function getIdFormation() {
-        return $this->idFormation;
-    }
+    public function setIdFormation($idFormation): void { $this->idFormation = $idFormation; }
+    function getIdFormation() { return $this->idFormation; }
 
-    public function setRessource($ressource): void {
-        $this->ressource = $ressource;
-    }
-    function getRessource() {
-        return $this->ressource;
-    }
+    public function setRessource($ressource): void { $this->ressource = $ressource; }
+    function getRessource() { return $this->ressource; }
     
-    public function setDescription($description): void {
-        $this->description = $description;
-    }
-    function getDescription() {
-        return $this->description;
-    }
+    public function setDescription($description): void { $this->description = $description; }
+    function getDescription() { return $this->description; }
 
     public function jsonSerialize() {
         return [

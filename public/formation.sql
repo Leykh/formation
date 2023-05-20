@@ -19,7 +19,11 @@
 -- Table structure for table `formationinscrits`
 --
 
-DROP TABLE IF EXISTS `formationinscrits`;
+DROP Database if exists formation;
+CREATE Database formation;
+
+
+USE formation;DROP TABLE IF EXISTS `formationinscrits`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `formationinscrits` (
@@ -36,13 +40,14 @@ CREATE TABLE `formationinscrits` (
 ) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+
 --
 -- Dumping data for table `formationinscrits`
 --
 
 LOCK TABLES `formationinscrits` WRITE;
 /*!40000 ALTER TABLE `formationinscrits` DISABLE KEYS */;
-INSERT INTO `formationinscrits` VALUES (12,2,'admin5','2023-02-16 20:42:05','2023-02-16 20:42:51'),(13,1,'admin5','2023-02-16 20:44:53','2023-02-16 21:29:55'),(14,1,'admin5','2023-02-16 21:41:34','2023-03-16 11:25:31'),(15,2,'admin5','2023-02-16 21:41:34','2023-03-16 11:25:30'),(16,1,'admin1','2023-03-16 11:26:14','2023-03-16 13:02:47'),(17,2,'admin1','2023-03-16 11:51:35','2023-03-16 13:29:10'),(18,4,'admin1','2023-03-16 11:51:57','2023-03-16 13:29:09'),(19,2,'admin5','2023-03-16 13:29:17','2023-03-16 14:22:59'),(20,1,'admin5','2023-03-16 14:22:31','2023-03-16 14:22:57'),(21,1,'admin5','2023-03-16 14:22:45','2023-03-16 14:22:58'),(22,1,'admin5','2023-03-16 14:23:40','2023-03-16 15:40:42'),(23,4,'admin1','2023-03-16 14:25:59','2023-03-16 15:40:50'),(24,1,'admin1','2023-03-16 15:41:06','2023-03-16 15:41:24'),(25,2,'admin1','2023-03-16 15:41:38',NULL),(26,1,'admin1','2023-03-16 15:41:38','2023-03-16 16:16:45'),(27,1,'admin5','2023-03-16 16:16:23','2023-03-17 07:55:37'),(28,1,'admin2','2023-03-17 07:58:28','2023-03-17 08:10:52'),(29,1,'admin2','2023-03-17 08:07:05','2023-03-17 08:10:53'),(30,2,'admin2','2023-03-17 08:10:46','2023-03-17 08:10:54'),(31,1,'admin2','2023-03-18 01:40:42',NULL),(32,9,'admin2','2023-03-18 01:40:53',NULL),(33,4,'admin2','2023-03-18 01:41:09',NULL);
+INSERT INTO `formationinscrits` VALUES (1, 2,'admin5','2023-02-16 20:42:05','2023-02-16 20:42:51'),(1, 1,'admin5','2023-02-16 20:44:53','2023-02-16 21:29:55'),(3, 1,'admin5','2023-02-16 21:41:34','2023-03-16 11:25:31');
 /*!40000 ALTER TABLE `formationinscrits` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -60,7 +65,7 @@ CREATE TABLE `formationmodules` (
   `ressource` varchar(255) NOT NULL,
   PRIMARY KEY (`idmodules`),
   KEY `formationModules_IDFormation_FOREIGN` (`idformation`),
-  CONSTRAINT `formationModules_IDFormation_FOREIGN` FOREIGN KEY (`IDFormation`) REFERENCES `formations` (`ID`)
+  CONSTRAINT `formationModules_IDFormation_FOREIGN` FOREIGN KEY (`IdFormation`) REFERENCES `formations` (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

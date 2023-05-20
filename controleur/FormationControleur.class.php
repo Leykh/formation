@@ -8,14 +8,13 @@ require_once "model/RessourceDao.class.php";
 class FormationsController{
     private $formationDao;
     private $inscritDao;
-    private $ressourceDao;
 
     public function __construct(){
         $this->formationDao = FormationDao::getInstance();
         $this->inscritDao = InscritDao::getInstance();
-        $this->ressourceDao = RessourceDao::getInstance();
     }
     function afficherAccueil(){
+        $formations = $this->formationDao->findAllFormationLastAdded(3);
         require "vue/accueil.view.php";
     }
     function afficherCatalogue(){
@@ -31,7 +30,6 @@ class FormationsController{
     }
     function afficherFormation($id){
         $formation=$this->formationDao->findOneFormationById($id);
-        $ressources=$this->ressourceDao->findAllRessourceById($id);
         $inscrit=$this->inscritDao->verifInscritFormation($_SESSION['login'],$id);
         require "vue/afficherformation.view.php";
     }
@@ -60,13 +58,13 @@ class FormationsController{
         else throw new Exception("Vous n'avez pas les droit nécessaires");
     }
     function creerFormationVue(){
-        if(Securite::verifAccessAdmin()){
+        if(Securite::verifAccessAdmin() || Securite::verifAccessCfa()){
             require "vue/creerformation.view.php";
         }
         else throw new Exception("Vous n'avez pas le droit d'accéder à cette page");
     }
     function creerValidationFormation($nom,$cout,$description){
-        if(Securite::verifAccessAdmin()){
+        if(Securite::verifAccessAdmin() || Securite::verifAccessCfa()){
             $file = $_FILES['image'];
             $repertoire = "../public/images/";
             $nomImageAjoute = Outils::ajouterImage($file,$repertoire);
@@ -104,7 +102,7 @@ class FormationsController{
         }
         else throw new Exception("Vous n'avez pas les droit nécessaires");
     }
-    function ajouerterFormationPanier($id){
+    function ajouterFormationPanier($id){
         $alert="";
         if(!isset($_SESSION['formations'])){
             $_SESSION['formations'] = array();

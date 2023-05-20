@@ -17,7 +17,7 @@
       <tbody>
         <?php foreach($inscritHistoriqueList as $inscrit) { ?>
           <tr class="align-middle">
-            <td scope="row"><?php echo $inscrit->getIdInscrit(); ?></td>
+            <td scope="row"></td>
             <td><?php echo $inscrit->getNomFormation(); ?></td>
             <td><?php echo  $inscrit->getDateDebut(); ?></td> 
             <td><?php echo $inscrit->getDateFin(); ?></td>

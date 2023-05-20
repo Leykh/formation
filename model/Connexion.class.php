@@ -1,8 +1,8 @@
 <?php
 abstract class Connexion {
     private static $pdo;
-    private static $servername = '154.49.245.52';
-    private static $username = 'userformation';
+    private static $servername = 'localhost';
+    private static $username = 'u166297419_userformation';
     private static $password = 'iNO9par?]G9';
     private static $dbname = 'u166297419_formation';
    

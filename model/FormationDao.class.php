@@ -1,10 +1,11 @@
 <?php
 require_once "Connexion.class.php";
 require_once "Formation.class.php";
+require_once "RessourceDao.class.php"; 
 
 class FormationDao extends Connexion {
     private static $_instance = null;
-    
+
     public static function getInstance() {
         if(is_null(self::$_instance)) {
             self::$_instance = new FormationDao();  
@@ -18,6 +19,9 @@ class FormationDao extends Connexion {
         $stmt->closeCursor();
         foreach($bddFormations as $formation){
             $l=new Formation($formation['id'], $formation['nom'], $formation['description'], $formation['cout'], $formation['image'],$formation['createur']);
+            $ressourceDao = RessourceDao::getInstance();
+            $r=$ressourceDao->findAllRessourceById($l->getId());
+            $l->setListeRessource($r);
             $formations[]=$l;
         }
         return $formations;
@@ -29,6 +33,9 @@ class FormationDao extends Connexion {
         $formation = $stmt->fetch(PDO::FETCH_ASSOC);
         $stmt->closeCursor();
         $l=new Formation($formation['id'], $formation['nom'], $formation['description'], $formation['cout'], $formation['image'],$formation['createur']);
+        $ressourceDao = RessourceDao::getInstance();
+        $r=$ressourceDao->findAllRessourceById($l->getId());
+        $l->setListeRessource($r);
         
         return $l;
     }
@@ -134,6 +141,9 @@ class FormationDao extends Connexion {
         if(isset($FormationListBd) && !empty($FormationListBd)){
             foreach($FormationListBd as $formationBd){
                 $formation = new Formation($formationBd['id'], $formationBd['nom'], $formationBd['description'], $formationBd['cout'], $formationBd['image'],$formationBd['createur']);
+                $ressourceDao = RessourceDao::getInstance();
+                $r=$ressourceDao->findAllRessourceById($l->getId());
+                $l->setListeRessource($r);
                 $formations[]=$formation;
             }
             return $formations;
@@ -141,6 +151,22 @@ class FormationDao extends Connexion {
         else {
             return null;
         }
+    }
+
+    function findAllFormationLastAdded($nb){
+        $stmt = $this->getBdd()->prepare("SELECT * FROM formations ORDER BY ID DESC");
+        $stmt->execute();
+        $bddFormations = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt->closeCursor();
+        for ($i = 0; $i < $nb; $i++) {
+            $formation = $bddFormations[$i];
+            $f = new Formation($formation['id'], $formation['nom'], $formation['description'], $formation['cout'], $formation['image'],$formation['createur']);
+            $ressourceDao = RessourceDao::getInstance();
+            $r=$ressourceDao->findAllRessourceById($f->getId());
+            $f->setListeRessource($r);
+            $formations[]=$f;
+        }
+        return $formations;
     }
 }
 ?>

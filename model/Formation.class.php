@@ -6,6 +6,7 @@ class Formation implements JsonSerializable {
     private $image;
     private $description;
     private $createur;
+    private $listeRessource = array();
 
     function __construct($id, $nom, $description, $cout, $image,$createur) {
         $this->id = $id;
@@ -43,8 +44,11 @@ class Formation implements JsonSerializable {
     public function getCout(){return $this->cout;}
     public function setCout($cout){$this->cout = $cout;}
 
-    
     public function getCreateur(){return $this->createur;}
     public function setCreateur($createur){$this->createur = $createur;}
+    
+    public function getListeRessource(){return $this->listeRessource;}
+    public function setListeRessource($listeRessource){$this->listeRessource = $listeRessource;}
+    public function addListeRessource($ressource){array_push($this->listeRessource, $ressource);}
 }
 ?>

@@ -13,7 +13,7 @@
     </div>
 </div>
     <?php if(Securite::isConnected() && $inscrit){ ?>
-    <?php foreach($ressources as $ressource) { ?>
+    <?php $ressources = $formation->getListeRessource(); foreach($ressources as $ressource) { ?>
         <div class="col-4">
             <h4 scope="row"><?php echo $ressource->getIdRessource(); ?></h4>
             <p><?php echo $ressource->getDescription(); ?>

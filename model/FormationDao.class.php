@@ -140,11 +140,11 @@ class FormationDao extends Connexion {
         $stmt->closeCursor();
         if(isset($FormationListBd) && !empty($FormationListBd)){
             foreach($FormationListBd as $formationBd){
-                $formation = new Formation($formationBd['id'], $formationBd['nom'], $formationBd['description'], $formationBd['cout'], $formationBd['image'],$formationBd['createur']);
+                $l=new Formation($formationBd['id'], $formationBd['nom'], $formationBd['description'], $formationBd['cout'], $formationBd['image'],$formationBd['createur']);
                 $ressourceDao = RessourceDao::getInstance();
                 $r=$ressourceDao->findAllRessourceById($l->getId());
                 $l->setListeRessource($r);
-                $formations[]=$formation;
+                $formations[]=$l;
             }
             return $formations;
         }

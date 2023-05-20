@@ -31,7 +31,7 @@ class FormationsController{
     function afficherFormation($id){
         $formation=$this->formationDao->findOneFormationById($id);
         $inscrit=$this->inscritDao->verifInscritFormation($_SESSION['login'],$id);
-        require "vue/afficherformation.view.php";
+        require "./vue/afficherFormation.view.php";
     }
     function afficherPanierInscrit(){
         $alert="";
@@ -74,7 +74,7 @@ class FormationsController{
         else throw new Exception("Vous n'avez pas les droit nécessaires");
     }
     function afficherCardFormations(){
-        $formations=$this->formationDao->lireFormations();
+        $formations=$this->formationDao->findAllFormation();
         require "vue/cardFormations.view.php";
     }
     function modifierFormationVue($id){ 

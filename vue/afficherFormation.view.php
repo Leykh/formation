@@ -2,7 +2,7 @@
 <br>
 <div class="row">
     <div class="col-4">
-        <img  style="width:80%; height:auto" src="public/images/<?= $formation->getImage(); ?>">
+        <img  style="width:80%; height:auto" src="../public/images/<?= $formation->getImage(); ?>">
     </div>
     <div class="col-8">
         <br>
@@ -17,7 +17,7 @@
         <div class="col-4">
             <h4 scope="row"><?php echo $ressource->getIdRessource(); ?></h4>
             <p><?php echo $ressource->getDescription(); ?>
-            <a style = text-decoration:none href="public/ressources/<?= $ressource->getIdFormation(); ?>/<?= $ressource->getRessource(); ?>"><?php echo $ressource->getRessource(); ?></a></p>
+            <a style = text-decoration:none href="../public/ressources/<?= $ressource->getIdFormation(); ?>/<?= $ressource->getRessource(); ?>"><?php echo $ressource->getRessource(); ?></a></p>
           </div>
             <?php } ?>
     <?php } ?>

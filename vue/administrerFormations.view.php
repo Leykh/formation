@@ -18,7 +18,7 @@
               foreach($tabFormations as $formation) { ?>
           <tr class="align-middle">
             <td scope="row"><?php echo $formation->getId(); ?></td>
-            <td><img width="80" src="public/images/<?php echo $formation->getImage(); ?>"></td>
+            <td><img width="80" src="../public/images/<?php echo $formation->getImage(); ?>"></td>
             <td><?php echo $formation->getNom(); ?></td>
             <td><?php echo $formation->getCout(); ?></td>
             <td><?php echo $formation->getDescription(); ?></td>
@@ -33,7 +33,7 @@
                     ?>
                     <tr class="align-middle">
                       <td scope="row"><?php echo $formation->getId(); ?></td>
-                      <td><img width="80" src="public/images/<?php echo $formation->getImage(); ?>"></td>
+                      <td><img width="80" src="../public/images/<?php echo $formation->getImage(); ?>"></td>
                       <td><?php echo $formation->getNom(); ?></td>
                       <td><?php echo $formation->getCout(); ?></td>
                       <td><?php echo $formation->getDescription(); ?></td>

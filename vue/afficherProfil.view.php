@@ -7,7 +7,7 @@
     <br>
     <div>
         <div>
-            <img width="100px" src="../public/images/<?= $user->getImage();  ?>" alt="photo de profil" />
+            <img width="100px" src="/public/images/<?= $user->getImage();  ?>" alt="photo de profil" />
         </div>
         <form method="POST" action="index.php?action=modifier-image" enctype="multipart/form-data">
             <label for="image">Changer l'image de profil </label><br />

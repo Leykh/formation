@@ -25,7 +25,7 @@ ob_start();
         ?>
           <tr class="align-middle">
             
-            <td><img width="80" src="../public/images/<?php echo $formation->getImage(); ?>"></td>
+            <td><img width="80" src="/public/images/<?php echo $formation->getImage(); ?>"></td>
             <td><?php echo $formation->getNom(); ?></td>
             <td><?php echo $formation->getCout(); ?></td>
             <td><a href="index.php?action=afficher-formation&id=<?php echo $formation->getId(); ?>" class="btn btn-info">Details</a></td>

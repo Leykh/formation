@@ -23,7 +23,7 @@ ob_start();
         <label class="form-label" for="password">Password : </label>
         <input class="form-control" type="text" id="password" name="password" value="<?= $user->getPassword() ?>">
       </div>
-      <img width="200px" src="../public/images/<?php echo $user->getImage(); ?>">
+      <img width="200px" src="/public/images/<?php echo $user->getImage(); ?>">
       <div class="mb-3">
         <label class="form-label" for="image">Image : </label>
         <input class="form-control" type="file" id="image" name="image">

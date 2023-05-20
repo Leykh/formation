@@ -1,9 +1,9 @@
 <?php
 abstract class Connexion {
     private static $pdo;
-    private static $servername = '127.0.0.1';
-    private static $username = 'root';
-    private static $password = '';
+    private static $servername = '154.49.245.52';
+    private static $username = 'userformation';
+    private static $password = 'iNO9par?]G9';
     private static $dbname = 'u166297419_formation';
    
     private static function setBdd(){

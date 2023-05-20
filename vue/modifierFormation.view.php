@@ -15,7 +15,7 @@ ob_start();
         <label class="form-label" for="descr">Description : </label>
         <input class="form-control" type="text" id="descr" name="descr" value="<?= $formation->getDescription() ?>">
       </div>
-      <img width="200px" src="/public/images/<?php echo $formation->getImage(); ?>">
+      <img width="200px" src="public/images//<?php echo $formation->getImage(); ?>">
       <div class="mb-3">
         <label class="form-label" for="image">Image : </label>
         <input class="form-control" type="file" id="image" name="image">

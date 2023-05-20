@@ -17,7 +17,7 @@
         <?php foreach($users as $user) { ?>
           <tr class="align-middle">
             <td><?php echo $user->getLogin(); ?></td>
-            <td><img width="40" src="/public/images/<?php echo $user->getImage(); ?>"></td>
+            <td><img width="40" src="public/images//<?php echo $user->getImage(); ?>"></td>
             <td><?php echo $user->getMail(); ?></td>
             <td><?php echo $user->getRole(); ?></td>
             <td><?php echo $user->getEstValide(); ?></td>

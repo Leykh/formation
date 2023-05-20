@@ -144,11 +144,11 @@ class UserControleur {
     function modifierUserValidation($old_login, $login,$mail,$role,$valide,$password,$image){
         if(Securite::verifAccessAdmin()){
             Outils::afficherTableau($_POST,"POST");
-            $repertoire = "/public/images/";
+            $repertoire = "public/images//";
             $nomImageAjoute = $image;
             $file = $_FILES['image'];
             Outils::afficherTableau($file,"file");
-            $repertoire = "/public/images/";
+            $repertoire = "public/images//";
             if($_FILES['image']['size'] > 0){
                 unlink($repertoire.$nomImageAjoute);
                 $nomImageAjoute = Outils::ajouterImage($file,$repertoire);

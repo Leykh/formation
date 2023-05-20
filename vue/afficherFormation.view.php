@@ -2,7 +2,7 @@
 <br>
 <div class="row">
     <div class="col-4">
-        <img  style="width:80%; height:auto" src="/public/images/<?= $formation->getImage(); ?>">
+        <img  style="width:80%; height:auto" src="public/images//<?= $formation->getImage(); ?>">
     </div>
     <div class="col-8">
         <br>

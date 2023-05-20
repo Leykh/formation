@@ -50,7 +50,7 @@ class FormationsController{
             if(!$this->inscritDao->existInscritByidFormation($id)){
                 $nomImage = $this->formationDao->findOneFormationById($id)->getImage();
                 $this->formationDao->supprimerFormation($id);
-                unlink("/public/images/".$nomImage);
+                unlink("public/images//".$nomImage);
                 header("Location: index.php?action=administrer-formation");
             }    
             else throw new Exception("Impossible de supprimer le formation car des inscrits y font référence");
@@ -59,14 +59,14 @@ class FormationsController{
     }
     function creerFormationVue(){
         if(Securite::verifAccessAdmin() || Securite::verifAccessCfa()){
-            require "vue/creerformation.view.php";
+            require "./vue/creerFormation.view.php";
         }
         else throw new Exception("Vous n'avez pas le droit d'accéder à cette page");
     }
     function creerValidationFormation($nom,$cout,$description){
         if(Securite::verifAccessAdmin() || Securite::verifAccessCfa()){
             $file = $_FILES['image'];
-            $repertoire = "/public/images/";
+            $repertoire = "public/images//";
             $nomImageAjoute = Outils::ajouterImage($file,$repertoire);
             $this->formationDao->creerFormation($nom,$cout,$nomImageAjoute,$description,$_SESSION['login']);
             header("Location: index.php?action=administrer-formation");
@@ -87,11 +87,11 @@ class FormationsController{
     function modifierFormationValidation($id,$nom,$cout,$description,$image){
         if(Securite::verifAccessAdmin()){
             Outils::afficherTableau($_POST,"POST");
-            $repertoire = "/public/images/";
+            $repertoire = "public/images//";
             $nomImageAjoute = $image;
             $file = $_FILES['image'];
             Outils::afficherTableau($file,"file");
-            $repertoire = "/public/images/";
+            $repertoire = "public/images//";
             if($_FILES['image']['size'] > 0){
                 unlink($repertoire.$nomImageAjoute);
                 $nomImageAjoute = Outils::ajouterImage($file,$repertoire);

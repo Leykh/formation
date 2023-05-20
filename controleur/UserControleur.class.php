@@ -162,9 +162,8 @@ class UserControleur {
         $login = $_SESSION['login'];
         $user = $this->userDao->findUserByLogin($login);
         $nomImageAjoute = $user->getImage();
-            $repertoire = "../public/images/";
             $file = $_FILES['image'];
-            $repertoire = "../public/images/";
+            $repertoire = "public/images/";
             if($_FILES['image']['size'] > 0){
                 unlink($repertoire.$nomImageAjoute);
                 $nomImageAjoute = Outils::ajouterImage($file,$repertoire);

@@ -51,7 +51,7 @@ class InscritControleur {
         $alert="";
         $inscritHistoriqueList = $this->inscritDao->findAllInscritHistoriqueByLogin($_SESSION['login']);
         if(!isset($inscritHistoriqueList) || empty($inscritHistoriqueList)){
-            $alert="Votre historique de formation inscrité est vide";
+            $alert="Votre historique de formation est vide";
         }
         require "vue/afficherHistorique.view.php";
     }

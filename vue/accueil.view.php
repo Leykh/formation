@@ -5,7 +5,6 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
-<h1 style="border: 1px blue; padding: 10px;">Les dernières formations crées</h1>
   <body>
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">

@@ -45,5 +45,11 @@ class Outils {
         }
         return $sousChaine;
     }
+    public static function afficherImageProfil(){
+        $userDao = UsersDao::getInstance();
+        $user = $userDao->findUserByLogin($_SESSION['login']);
+        $imageprofil = $user->getImage();
+        return $imageprofil;
+    }
 }
 ?>

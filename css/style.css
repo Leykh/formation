@@ -37,8 +37,6 @@ footer{
     background-color:black;
     color: white;
     margin-top: 100px;
-    margin-bottom: 40px;
-    padding: 40px;
     text-align: center;
 }
 .bouton {
@@ -84,4 +82,93 @@ footer{
     border-radius: 7px;
     color: white;
     text-decoration: none;
+}
+
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+    list-style-type: none; /* enlève les puces */
+}
+
+.card li {
+position: relative;
+left: 0;
+background-color: #eeeeee;
+margin: 2em 0em 0.5em 0em;
+padding: 0.3em 0;
+height: 2.2em;
+border-radius: 4px;
+font-size: x-large;
+overflow: hidden;
+}
+
+.card li:hover {
+color: #2c3a41;
+background-color: #e6e6e6;
+left: 0.1em;
+}
+
+.card .li-title{
+display: inline;
+}
+
+
+.card ul {
+    list-style-type: none; /* enlève les puces */
+    padding-block-end: 20px;
+    padding-inline-start: 20px;
+}
+.card .titre {
+    display: inline-block;
+    color: white;
+    padding: 0.8em 0.7em 0 0.7em;
+    background-color: #405061;
+    line-height: 1em;
+    position: relative;
+    left: -1px;
+    top: -6px;
+    height: 1.95em;
+    margin-right: 0.8em;
+    border-radius: 4px 0 0 4px;
+  }
+
+  .card .titrespan {
+    display: inline-block;
+    color: white;
+    padding: 0.8em 0.7em 0 0.7em;
+    background-color: #405061;
+    line-height: 1em;
+    position: relative;
+    left: -1px;
+    top: -6px;
+    height: 1.95em;
+    margin-right: 0.8em;
+    border-radius: 4px 0 0 4px;
+  }
+  
+.card {
+    background-color: white;
+    border-radius: 2%;
+    box-shadow: 5px 5px 5px #888888;
+    border: 1px solid #bdbdbd;
+    height: 80%;
+    width: 40%;
+    margin: 5px;
+    cursor: pointer;
+    position: absolute; /* force à toutes les mettres au même endroit */
+    transition: all 1s ease-out; /* plus ou moins, les temps des transitions (. pour les décimales) */
+    overflow:hidden;
+  }
+  
+.card .description{
+  font-size: large;
+  width: 75%;
+  align-self: center;
+  justify-content: center;
+  padding-left: 40px;
+  display: none; /* Accordéon */
+}
+
+.enable-bootstrap {
+    @include https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css;
 }

@@ -41,12 +41,8 @@ class UsersDao extends Connexion {
         $stmt->bindValue(":username",$username,PDO::PARAM_STR);
         $resultat = $stmt->execute();
         $stmt->closeCursor();
-        if($resultat > 0){
-            return true;
-        }
-        else {
-            return false;
-        }
+
+        return $resultat > 0;
     }
     function creerAbonne($user, $cle) {  
         echo "user=".$user->getLogin()."<br>";
@@ -74,12 +70,8 @@ class UsersDao extends Connexion {
         $stmt->execute();
         $estModifier = ($stmt->rowCount() > 0);
         $stmt->closeCursor();
-        if($estModifier){
-            return true;
-        }
-        else {
-            return false;
-        }
+
+        return $estModifier;
     }
     function isExistLoginUser($login){
         $pdo = $this->getBdd();
@@ -158,6 +150,54 @@ class UsersDao extends Connexion {
         if($resultat > 0){
             echo "user modifier login=".$login."<br>";
         }
+    }
+    function getAllPasswdHashUser($login){
+        $pdo = $this->getBdd();
+        $req = "SELECT * FROM historique_utilisateur WHERE login=:login";
+        $stmt = $pdo->prepare($req);
+        $stmt->execute();
+        $bddUsers = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt->closeCursor();
+        foreach($bddUsers as $user){
+            $p=array('login' => $user['login'],'mdp' => $user['password'],'date'=>$user['mail']);
+            $passwds[]=$p;
+        }
+        return $passwds;
+    } 
+    function archivePsswdUser($login,$pwd){
+        $date = date('Y-m-d H:i:s');
+        $pdo = $this->getBdd();
+        $req = "INSERT INTO historique_utilisateur (login, mdp, date)
+        VALUES (:login, :pwd, :date)";
+        $stmt = $pdo->prepare($req);
+        $stmt->bindValue(":login",$login,PDO::PARAM_STR);
+        $stmt->bindValue(":pwd",$pwd,PDO::PARAM_STR);
+        $stmt->bindValue(":date",$date,PDO::PARAM_STR);
+        $resultat = $stmt->execute();
+        $stmt->closeCursor();
+    } 
+    
+    function changePsswd($login,$pwd){
+        $pdo = $this->getBdd();
+        $req = "UPDATE utilisateur SET password = :pwd WHERE login = :login";
+        $stmt = $pdo->prepare($req);
+        $stmt->bindValue(":login",$login,PDO::PARAM_STR);
+        $stmt->bindValue(":pwd",$pwd,PDO::PARAM_STR);
+        $resultat = $stmt->execute();
+        $stmt->closeCursor();
+    } 
+    
+    function updateClef($login,$clef){
+        $pdo = $this->getBdd();
+        $req = "
+        update utilisateur 
+        set clef = :clef, est_valide = 0
+        where login = :login";
+        $stmt = $pdo->prepare($req);
+        $stmt->bindValue(":login",$login,PDO::PARAM_STR);
+        $stmt->bindValue(":clef",$clef,PDO::PARAM_STR);
+        $resultat = $stmt->execute();
+        $stmt->closeCursor();
     }
 }
 ?>

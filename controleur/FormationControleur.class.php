@@ -26,6 +26,17 @@ class FormationsController{
                 unset($formations[$del]);
             }
         }
+        if(isset($_SESSION['formations'])){
+            foreach($formations as $formation){
+                $id = $formation->getid(); 
+                $idverif = array_search($id,$_SESSION['formations']);
+                if (array_search($id,$_SESSION['formations']))
+                {
+                    $del = array_search($formation,$formations);
+                    unset($formations[$del]);
+                }
+            }
+        }
         require "vue/afficherCatalogue.view.php";
     }
     function afficherFormation($id){
@@ -104,17 +115,15 @@ class FormationsController{
     }
     function ajouterFormationPanier($id){
         $alert="";
-        if(!isset($_SESSION['formations'])){
+        if(empty($_SESSION['formations'])){
             $_SESSION['formations'] = array();
         }
         if(in_array($id, $_SESSION['formations'])){
-            echo $id." est déjà commander<br>";
-            throw new Exception("Vous avez déjà commander ce formation");
+            throw new Exception("Vous avez déjà commander cette formation");
         }
         else {
-            $_SESSION['formations'][]=$id;
+            $_SESSION['formations'][$id]=$id;
         }
-        Outils::afficherTableau($_SESSION['formations'],"SESSION['formations']");
         header("Location: index.php?action=afficher-catalogue");
     }
     function supprimerFormationPanier($id){
@@ -126,7 +135,9 @@ class FormationsController{
     }
     function administrerFormations(){
         $tabFormations=$this->formationDao->findAllFormation();
-        $login = $_SESSION['login'];
+            if(isset($_SESSION['login'])){
+                $login = $_SESSION['login'];
+            }
         require "vue/administrerFormations.view.php";
     }
 }

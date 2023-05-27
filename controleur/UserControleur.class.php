@@ -171,6 +171,34 @@ class UserControleur {
         $this->userDao->modifierUserImage($login,$nomImageAjoute);
         header("Location: index.php?action=afficher-profil");
     }
+
+    function loginChangement($login, $password,$newpassword){
+        $alert="";
+        if(!$this->userDao->isExistLoginUser($login)){
+            throw new Exception("Le login n'existe pas");
+        }
+        else {
+            $user = $this->userDao->findUserByLogin($login);
+            if(isset($login) && !empty($login) && isset($password) && !empty($password))        
+            {
+                
+                $passwdHashbd = $this->userDao->getPasswdHashUser($login);
+                if($this->userDao->isAbonneValide($login)  && password_verify($password, $passwdHashbd)){
+                        $cle = uniqid();
+                        //$this->sendMailAbonne($login, $user->getMail(),$cle);
+                        $hash = password_hash($newpassword, PASSWORD_DEFAULT);
+                        $this->userDao->archivePsswdUser($login, $password);
+                        $this->userDao->updateClef($login, $cle);
+                        $this->userDao->changePsswd($login,$hash);
+                    }
+                    else {
+                        $alert = "impossible";
+                        require "vue/modifpasswd.php";
+                    }
+                }
+         }
+        
+    }
 }
 ?>
 

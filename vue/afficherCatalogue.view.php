@@ -8,19 +8,19 @@
     </div>              
 <?php } else { ?>
   <?php if(Securite::isConnected()){ ?>
-      <div class="" style="padding: 20; text-align : right;">
-        <a href="index.php?action=afficher-panier" class="btn btn-primary btn-lg">Payer les formations</a>
+      <div class="" style="padding: 20; text-align : center;">
+        <a href="index.php?action=afficher-panier" class="btn btn-success btn-lg">Payer les formations</a>
     </div>
   <?php } ?>
-  <div class="row">
+  <div class="row" style='place-content: center;'>
     <?php $i=0; ?>
     <?php foreach($formations as $formation) { ?>
-      <div class="col">
-        <div class="card p-2 m-2" style="width: 20rem;">
+      <div class="col-3"style ='flex-basis: fit-content; text-align : center;'>
+        <div class="card p-2 m-2" style="width: 20rem; flex-basis: fit-content; height: 97.5%;">
           <img height="300px" src="public/images//<?php echo $formation->getImage(); ?>" class="card-img-top" alt="image">
           <div class="card-body">
             <h5 class="card-title"><?php echo Outils::sousChaineTaille($formation->getNom(), 18); ?></h5>
-            <p class="card-text"><?php echo Outils::sousChaineTaille($formation->getDescription(),100); ?></p>
+            <p class="card-text" style='height: 11.5%;'><?php echo Outils::sousChaineTaille($formation->getDescription(),100); ?></p>
           <ul class="list-group list-group-flush">
             <li class="list-group-item"><?php echo Outils::sousChaineTaille($formation->getCout()." €",10); ?></li>
           </ul>

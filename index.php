@@ -8,9 +8,7 @@ require_once "controleur/InscritControleur.class.php";
 
 if (Securite::autoriserCookie()){
     session_start();
-    echo Securite::isConnected() ? 'true ' : 'false ';
     $id_session = session_id();
-    echo "id_session : ". $id_session;
 }
  
 $formationController = new FormationsController();
@@ -91,6 +89,10 @@ try{
             setcookie('cookie-accept', '', time()-3600, '/', '', false, false);
             header("Location: index.php");
         break;
+        /*case "modif-passwd": require "vue/modifpasswd.php";
+        break;
+        case "modif-passwd-validation": $userControleur->loginChangement($_POST['login'], $_POST['passwd'],$_POST['npasswd']);
+        break;*/
         default: throw new Exception("La page n'existe pas");
     }
 }catch(Exception $e){

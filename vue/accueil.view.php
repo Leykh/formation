@@ -1,11 +1,12 @@
 <?php ob_start()?>
 <head>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./css/style.css" type="text/css" media="screen" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
 
-  <body>
+ <body>
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
       <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -18,8 +19,8 @@
         <a href="index.php?action=afficher-catalogue">
         <img src="public/images/formation.jpg" style="object-fit: cover;object-position: center;height: 70vh;overflow: hidden;"></a>
         <div class="carousel-caption d-none d-md-block">
-                    <h3 style="text-shadow: 0 0 4px black;">Retrouvez dès à présent toutes nos formations !</h3>
-                    <h5 style="text-shadow: 0 0 2px black;">Numérique, management, immobilier, et bien plus encore</h5>
+                    <h3 style="text-shadow: 0 0 5px black;">Retrouvez dès à présent toutes nos formations !</h3>
+                    <h5 style="text-shadow: 0 0 4px black;">Numérique, management, immobilier, et bien plus encore</h5>
                 </div>
         </div>
             <?php foreach($formations as $formation) {?>
@@ -42,7 +43,6 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
-</div>
 </body>
    
 <?php

@@ -38,7 +38,7 @@ class InscritControleur {
             require "vue/listerInscritFormation.view.php";
         }
         else {
-            $alert="Vous n'avez pas de formation en attente de retour";
+            $alert="Vous ne suivez aucune formation";
             require "vue/listerInscritFormation.view.php";
         }
     }

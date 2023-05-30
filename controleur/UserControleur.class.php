@@ -28,7 +28,7 @@ class UserControleur {
             $this->sendMailAbonne($login, $mail,$cle);
             $hash = password_hash($password, PASSWORD_DEFAULT);
             echo "hash=".$hash."<br>";
-            $user=new User($login, $hash, $mail, "abonne","profils/profil.png", 0);
+            $user=new User($login, $hash, $mail, "abonne","profil.png", 0);
             $this->userDao->creerAbonne($user, $cle);
             header("Location: index.php?action=login");
         }

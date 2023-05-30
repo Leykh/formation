@@ -18,6 +18,7 @@ ob_start();
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+    <div><a class="nav-link" href="index.php?action=creer-abonne">Créer un compte</a></div>
 <?php
 $content = ob_get_clean();
 $titre = "Se logger";

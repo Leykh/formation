@@ -17,7 +17,7 @@
     <div class="container">
         <div class="row">
                 <ul class="nav" style='flex-basis: fit-content;'>
-                    <a href="index.php" style='text-decoration:none;'><h2>CAFOMA</h2></a>
+                    <a href="index.php" style='text-decoration:none;'><div style='font-size: 2em;'>CAFOMA</div></a>
                     <li class="nav-item">
                         <a class="nav-link" href="index.php?action=afficher-catalogue">Catalogue des formations</a> <?php ?>
                     </li>

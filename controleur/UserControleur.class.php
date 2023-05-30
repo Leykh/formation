@@ -35,7 +35,7 @@ class UserControleur {
     }
     private function sendMailAbonne($login,$mail,$cle){
         $urlVerification = "https://ducoeurc.eu/index.php?action=valider-abonne&login=".$login."&cle=".$cle;
-        $sujet = "Création du compte sur le site Alcatar";
+        $sujet = "Création du compte sur le site CAFOMA";
         $message = "Pour valider votre compte veuillez cliquer sur le lien suivant ".$urlVerification;
         Outils::sendMail($mail,$sujet,$message);
     }

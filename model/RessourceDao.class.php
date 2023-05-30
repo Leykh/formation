@@ -41,5 +41,26 @@ class RessourceDao extends Connexion {
             return isset($ressources) ? $ressources : array(1 => new Ressource (1,$id,"Aucune ressource pour le moment",""));
         }
     }
+    function creerRessource($idformation,$description,$ressource){
+        $pdo = $this->getBdd();
+        $req = "
+        INSERT INTO formationmodules (idformation, description, ressource)
+        values (:idformation, :description, :ressource)";
+        $stmt = $pdo->prepare($req);
+        $stmt->bindValue(":idformation",$idformation,PDO::PARAM_INT);
+        $stmt->bindValue(":description",$description,PDO::PARAM_STR);
+        $stmt->bindValue(":ressource",$ressource,PDO::PARAM_STR);
+        $resultat = $stmt->execute();
+        $stmt->closeCursor();
+    }
+    function supprimerRessource($id,$idm){
+        $pdo = $this->getBdd();
+        $req = "Delete from formationmodules where idformation = :id AND idmodules = :idm";
+        $stmt = $pdo->prepare($req);
+        $stmt->bindValue(":id",$id,PDO::PARAM_INT);
+        $stmt->bindValue(":idm",$idm,PDO::PARAM_INT);
+        $resultat = $stmt->execute();
+        $stmt->closeCursor();
+    }
 }
 ?>

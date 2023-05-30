@@ -12,6 +12,7 @@ class FormationsController{
     public function __construct(){
         $this->formationDao = FormationDao::getInstance();
         $this->inscritDao = InscritDao::getInstance();
+        $this->ressourceDao = RessourceDao::getInstance();
     }
     function afficherAccueil(){
         $formations = $this->formationDao->findAllFormationLastAdded(3);
@@ -41,7 +42,9 @@ class FormationsController{
     }
     function afficherFormation($id){
         $formation=$this->formationDao->findOneFormationById($id);
-        $inscrit=$this->inscritDao->verifInscritFormation($_SESSION['login'],$id);
+        if(isset($_SESSION['login'])){
+            $inscrit=$this->inscritDao->verifInscritFormation($_SESSION['login'],$id);
+        }
         require "./vue/afficherFormation.view.php";
     }
     function afficherPanierInscrit(){
@@ -93,6 +96,12 @@ class FormationsController{
             $formation=$this->formationDao->findOneFormationById($id);
             require "vue/modifierFormation.view.php";
         }
+        else if(Securite::verifAccessCfa()){
+            $formation=$this->formationDao->findOneFormationById($id);
+            if ($formation->getCreateur() == $_SESSION['login']){
+                require "vue/modifierFormation.view.php";
+            }
+        }
         else throw new Exception("Vous n'avez pas le droit d'accéder à cette page");
     }
     function modifierFormationValidation($id,$nom,$cout,$description,$image){
@@ -134,11 +143,31 @@ class FormationsController{
         header("Location: index.php?action=afficher-panier");
     }
     function administrerFormations(){
-        $tabFormations=$this->formationDao->findAllFormation();
-            if(isset($_SESSION['login'])){
-                $login = $_SESSION['login'];
-            }
-        require "vue/administrerFormations.view.php";
+        if(Securite::verifAccessAdmin() || Securite::verifAccessCfa()){
+            $tabFormations=$this->formationDao->findAllFormation();
+                if(isset($_SESSION['login'])){
+                    $login = $_SESSION['login'];
+                }
+            require "vue/administrerFormations.view.php";
+        }
+    }
+    
+    function creerRessourceVue($id){
+        if(Securite::verifAccessAdmin() || Securite::verifAccessCfa()){
+            $formation=$this->formationDao->findOneFormationById($id);
+            require "./vue/creerRessource.view.php";
+        }
+        else throw new Exception("Vous n'avez pas le droit d'accéder à cette page");
+    }
+    function creerValidationRessource($idformation,$descr){
+        if(Securite::verifAccessAdmin() || Securite::verifAccessCfa()){
+            $file = $_FILES['ressource'];
+            $repertoire = "public/ressources/1//";
+            $nomRessourceAjoute = Outils::ajouterImage($file,$repertoire);
+            $this->ressourceDao->creerRessource($idformation,$descr,$nomRessourceAjoute);
+            header("Location: index.php?action=lister-inscrit-formation".$idformation);
+        }
+        else throw new Exception("Vous n'avez pas les droit nécessaires");
     }
 }
 ?>

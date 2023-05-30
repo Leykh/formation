@@ -68,6 +68,10 @@ try{
         break;
         case "creer-formation-validation": $formationController->creerValidationFormation($_POST['nom'],$_POST['cout'],$_POST['descr']);
         break;
+        case "creer-ressource": $formationController->creerRessourceVue($_GET['id']);
+        break;
+        case "creer-ressource-validation": $formationController->creerValidationRessource($_POST['idformation'],$_POST['descr']);
+        break;
         case "administrer-utilisateur": $userControleur->administrerUtilisateur();
         break;
         case "supprimer-user": $userControleur->supprimerUser($_GET['user']);
